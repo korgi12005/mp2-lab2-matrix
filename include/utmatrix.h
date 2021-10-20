@@ -179,10 +179,11 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
     if (Size != v.Size)
         throw Size;
+    TVector bf(Size);
     for (int i = 0; i < Size; i++) {
-        pVector[i] =pVector[i]+ v.pVector[i];
+        bf.pVector[i] =pVector[i]+ v.pVector[i];
     }
-    return *this;
+    return bf;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание

@@ -119,41 +119,41 @@ TEST(TMatrix, matrices_with_different_size_are_not_equal)
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
 {
-	TMatrix<int> V1(5), V2(5),V3(5);
-
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 5; j++) {
+	TMatrix<int> V1(5), V2(5), V3(5);
+	for (int i = 0; i < 5; i++)
+		for (int j = i; j < 5; j++) {
 			V1[i][j] = 1;
 			V2[i][j] = 2;
 			V3[i][j] = 3;
 		}
-	}
-	
-	ASSERT_EQ(V3,V1+ V2);
+
+	V1 = V1 + V2;
+	EXPECT_EQ(V1 , V3);
 }
 
 TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 {
-	TMatrix<int> V1(4), V2(3);
-	
-		for (int i = 0; i < 4; i++) {
-			V1[i] = 1;
-			
-		}
-		for (int i = 0; i < 3; i++) {
-			V2[i] = 2;
-
-		}
-	ASSERT_ANY_THROW(V1 + V2);
+	TMatrix<int> V1(5), V2(7), V3(7);
+	ASSERT_ANY_THROW(V3 = V2 + V1);
 }
 
 TEST(TMatrix, can_subtract_matrices_with_equal_size)
 {
-  ADD_FAILURE();
+	TMatrix<int> V1(5), V2(5), V3(5);
+	for (int i = 0; i < 5; i++)
+		for (int j = i; j < 5; j++) {
+			V1[i][j] = 1;
+			V2[i][j] = 2;
+			V3[i][j] = 3;
+		}
+
+	V3 = V3- V2;
+	EXPECT_EQ(V1, V3);
 }
 
 TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TMatrix<int> V1(5), V2(7), V3(7);
+	ASSERT_ANY_THROW(V3 = V2 - V1);
 }
 
